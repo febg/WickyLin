@@ -11,11 +11,17 @@ import UIKit
 class WordListViewController: UITableViewController {
   var viewModel = WordListViewModel()
 
+  @IBOutlet private weak var mainButton: UIButton!
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = .init(frame: .zero)
     viewModel.wordList.signal.observeValues { [weak self] _ in self?.tableView.reloadData() }
     viewModel.navTitle.signal.observeValues { [weak self] in self?.navigationItem.title = $0 }
+    viewModel.buttonInfo.signal.observeValues { [weak self] in
+      self?.mainButton.tag = $0.rawValue
+      self?.mainButton.setTitle($0.title, for: .normal)
+    }
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -23,10 +29,15 @@ class WordListViewController: UITableViewController {
     viewModel.viewWillAppear()
   }
 
-  @IBAction func buttonPressed() {
-    let addWordVc = Storyboard.Main.get(AddWordViewController.self)
-    addWordVc.viewModel = AddWordViewModel(viewModel)
-    navigationController?.pushViewController(addWordVc, animated: true)
+  @IBAction func buttonPressed(_ sender: UIButton) {
+    switch sender.tag {
+    case ButtonState.addWord.rawValue:
+      let addWordVc = Storyboard.Main.get(AddWordViewController.self)
+      addWordVc.viewModel = AddWordViewModel(viewModel)
+      navigationController?.pushViewController(addWordVc, animated: true)
+    default:
+      return
+    }
   }
 }
 

@@ -38,7 +38,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="buttonPressed" destination="mnY-hx-I2L" eventType="touchUpInside" id="bae-jq-MVI"/>
+                                        <action selector="buttonPressed:" destination="mnY-hx-I2L" eventType="touchUpInside" id="CQ6-gw-F8e"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -81,6 +81,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="10个单词" id="fCS-hT-xhq"/>
+                    <connections>
+                        <outlet property="mainButton" destination="KfI-eN-2XR" id="Ew9-bV-VLs"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y7p-cL-wWg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
