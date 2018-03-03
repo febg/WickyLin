@@ -16,20 +16,16 @@ class WordListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = .init(frame: .zero)
+    viewModel.viewDidLoad()
     viewModel.wordList.signal.observeValues { [weak self] _ in self?.tableView.reloadData() }
-    viewModel.navTitle.signal.observeValues { [weak self] in
-      self?.navigationItem.title = $0
-      print($0)
-    }
+    viewModel.navTitle.signal.observeValues { [weak self] in self?.navigationItem.title = $0 }
     viewModel.buttonInfo.signal.observeValues { [weak self] in
       self?.mainButton.tag = $0.rawValue
       self?.mainButton.setTitle($0.title, for: .normal)
     }
-  }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    viewModel.viewWillAppear()
+    viewModel.buttonBackgroundColor.signal.observeValues { [weak self] in
+      self?.mainButton.backgroundColor = $0
+    }
   }
 
   @IBAction func buttonPressed(_ sender: UIButton) {
