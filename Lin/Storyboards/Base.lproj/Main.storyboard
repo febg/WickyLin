@@ -216,7 +216,7 @@
                     <navigationItem key="navigationItem" title="历史记录" id="OOc-ZH-aLs">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8dy-Q6-gCb">
                             <connections>
-                                <segue destination="mnY-hx-I2L" kind="show" id="dJQ-Xa-rtX"/>
+                                <action selector="addButtonPressed:" destination="R6i-2e-bAh" id="Bso-zX-EfU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

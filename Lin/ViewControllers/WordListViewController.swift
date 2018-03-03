@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Snakepit
 class WordListViewController: UITableViewController {
   var viewModel = WordListViewModel()
 
@@ -25,6 +25,26 @@ class WordListViewController: UITableViewController {
     }
     viewModel.buttonBackgroundColor.signal.observeValues { [weak self] in
       self?.mainButton.backgroundColor = $0
+    }
+
+    navigationItem.rightBarButtonItem = .init(
+      title: "Close",
+      style: .done,
+      target: self,
+      action: #selector(closePressed)
+    )
+  }
+
+  @objc func closePressed() {
+    showAlert(
+      title: "是否保存",
+      message: "如果你不保存，这些单词就没有了",
+      actions: [.cancel, .ok],
+      type: .actionSheet) {
+        if $0.title == AlertButtonType.ok.description {
+          self.navigationController?.dismiss(animated: true, completion: nil)
+          // TODO: save wordlist
+        }
     }
   }
 
@@ -50,7 +70,7 @@ extension WordListViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
     let word = viewModel.wordList.value[indexPath.row]
     cell.textLabel?.text = word.title
-    cell.detailTextLabel?.text = word.subtitle
+    cell.detailTextLabel?.text = word.subtitle + Date().dateString
     return cell
   }
 }

@@ -20,7 +20,7 @@ class WordListViewModel {
 
   init() {
     wordList = .init(capturing: _wordList)
-    let nums = 3
+    let nums = 10
     let placeholder = "今天要背\(nums)个单词"
     let navTitleStream = Signal.merge(
       _viewDidLoad .signal.map { placeholder },
