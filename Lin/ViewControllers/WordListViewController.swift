@@ -17,7 +17,10 @@ class WordListViewController: UITableViewController {
     super.viewDidLoad()
     tableView.tableFooterView = .init(frame: .zero)
     viewModel.wordList.signal.observeValues { [weak self] _ in self?.tableView.reloadData() }
-    viewModel.navTitle.signal.observeValues { [weak self] in self?.navigationItem.title = $0 }
+    viewModel.navTitle.signal.observeValues { [weak self] in
+      self?.navigationItem.title = $0
+      print($0)
+    }
     viewModel.buttonInfo.signal.observeValues { [weak self] in
       self?.mainButton.tag = $0.rawValue
       self?.mainButton.setTitle($0.title, for: .normal)
@@ -36,6 +39,7 @@ class WordListViewController: UITableViewController {
       addWordVc.viewModel = AddWordViewModel(viewModel)
       navigationController?.pushViewController(addWordVc, animated: true)
     default:
+      // TODO: Start QUIZ
       return
     }
   }

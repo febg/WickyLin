@@ -20,17 +20,15 @@ class WordListViewModel {
   init() {
     wordList = .init(capturing: _wordList)
 
-    let placeholder = "今天要背10个单词"
-    let navTitleStream = Signal.merge(
-      _viewWillAppear.signal.map { placeholder },
-      wordList.signal.filter { $0.isEmpty }.map { _ in placeholder },
-      wordList.signal.filter { !$0.isEmpty }.map { $0.count }.map { "你还需要添加\(10 - $0)个单词" }
-    )
-    navTitle = .init(initial: placeholder, then: navTitleStream)
+    let navTitleStream = wordList.signal
+      .filter { !$0.isEmpty }
+      .map { $0.count }
+      .map { "你还需要添加\(10 - $0)个单词" }
+    navTitle = .init(initial: "今天要背10个单词", then: navTitleStream)
 
     let buttonInfoStream = wordList.signal
-      .map { $0.count >= 10 ? ButtonState.startQuiz : ButtonState.addWord }
-    buttonInfo = .init(initial: .addWord, then: buttonInfoStream)
+      .map { $0.count == 10 ? ButtonState.startQuiz : ButtonState.addWord }
+    buttonInfo = .init(initial: ButtonState.addWord, then: buttonInfoStream)
   }
 
   func add(word: Word) { _wordList.value.append(word) }
