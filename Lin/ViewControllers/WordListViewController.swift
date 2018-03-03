@@ -14,9 +14,8 @@ class WordListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = .init(frame: .zero)
-    viewModel.wordList.signal.observeValues { [weak self] _ in
-       self?.tableView.reloadData()
-    }
+    viewModel.wordList.signal.observeValues { [weak self] _ in self?.tableView.reloadData() }
+    viewModel.navTitle.signal.observeValues { [weak self] in self?.navigationItem.title = $0 }
   }
 
   override func viewWillAppear(_ animated: Bool) {

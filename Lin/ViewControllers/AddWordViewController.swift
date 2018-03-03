@@ -20,7 +20,6 @@ class AddWordViewController: UIViewController {
   override func viewDidLoad() {
     englishTextField.becomeFirstResponder()
     viewModel.isButtonEnable.signal.observeValues { [weak self] in
-      print("state \($0)")
       self?.addButton.isEnabled = $0
       self?.addButton.alpha = $0 ? 1 : 0.5
     }
