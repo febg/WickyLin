@@ -11,7 +11,6 @@ import Snakepit
 
 enum Storyboard: String, StoryboardGettable {
   case Main
-  case Vocabulary
 
   var bundle: Bundle? {
     return Bundle.main

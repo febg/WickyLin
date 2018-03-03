@@ -24,7 +24,7 @@ class WordListViewController: UITableViewController {
   }
 
   @IBAction func buttonPressed() {
-    let addWordVc = Storyboard.Vocabulary.get(AddWordViewController.self)
+    let addWordVc = Storyboard.Main.get(AddWordViewController.self)
     addWordVc.viewModel = AddWordViewModel(viewModel)
     navigationController?.pushViewController(addWordVc, animated: true)
   }
