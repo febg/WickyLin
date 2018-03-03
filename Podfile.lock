@@ -1,0 +1,25 @@
+PODS:
+  - ReactiveCocoa (7.1.0):
+    - ReactiveSwift (~> 3.1)
+  - ReactiveSwift (3.1.0):
+    - Result (~> 3.2)
+  - Result (3.2.4)
+  - Snakepit (0.0.8)
+  - SwiftLint (0.25.0)
+
+DEPENDENCIES:
+  - ReactiveCocoa (~> 7.0)
+  - ReactiveSwift (~> 3.0)
+  - Snakepit
+  - SwiftLint
+
+SPEC CHECKSUMS:
+  ReactiveCocoa: 105ad96f6b8711f1ee7d165fc96587479298053b
+  ReactiveSwift: 5b26d2e988fe0eed2daf48c4054d1de74db50184
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  Snakepit: a8deeaa5ef7ef1d9f2ebca523074f605898882b0
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
+
+PODFILE CHECKSUM: 8310dada1a7e43085c599befbc0172eb0ead1282
+
+COCOAPODS: 1.4.0
