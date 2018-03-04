@@ -26,7 +26,9 @@ class HistoryViewModel {
     _getHistory.on(
       starting: { [weak self] in self?._isLoading.value = true },
       terminated: { [weak self] in self?._isLoading.value = false })
-      .startWithValues { [weak self] in self?._history.value = $0 }
+      .startWithValues { [weak self] in
+        self?._history.value = $0.sorted { $0.date.compare($1.date) == .orderedDescending }
+    }
   }
 }
 

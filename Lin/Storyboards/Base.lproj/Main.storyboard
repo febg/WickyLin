@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--10个单词-->
+        <!--Word List View Controller-->
         <scene sceneID="TnU-CK-Ya3">
             <objects>
                 <tableViewController storyboardIdentifier="WordListViewController" id="mnY-hx-I2L" customClass="WordListViewController" customModule="Lin" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,7 +80,7 @@
                             <outlet property="delegate" destination="mnY-hx-I2L" id="Opx-qR-LHc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="10个单词" id="fCS-hT-xhq"/>
+                    <navigationItem key="navigationItem" id="fCS-hT-xhq"/>
                     <connections>
                         <outlet property="mainButton" destination="KfI-eN-2XR" id="Ew9-bV-VLs"/>
                     </connections>

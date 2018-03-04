@@ -22,15 +22,19 @@ class WordListViewModel {
   init() {
     wordList = .init(capturing: _wordList)
     let nums = 10
-    let placeholder = "今天要背\(nums)个单词"
     let navTitleStream = Signal.merge(
-      _viewDidLoad .signal.map { placeholder },
-      wordList.signal.filter { $0.isEmpty }.map { _ in placeholder },
+//      _viewDidLoad .signal.map { placeholder },
+//      wordList.signal.filter { $0.isEmpty }.map { _ in placeholder },
       wordList.signal.filter { $0.count < nums }.map { "你还需要添加\(nums - $0.count)个单词" },
       wordList.signal.filter { $0.count >= nums }.map { "一共\($0.count)个单词" }
     )
-    navTitle = .init(initial: placeholder, then: navTitleStream)
-    buttonInfo = .init(wordList.map { $0.count >= nums ? .startQuiz : .addWord })
+    navTitle = .init(initial: String(), then: navTitleStream)
+
+    let buttonInfoStream = wordList.signal
+      .map { $0.count >= nums ? ButtonState.startQuiz : ButtonState.addWord}
+      .combineLatest(with: _viewDidLoad.signal)
+      .map { $0.0 }
+    buttonInfo = .init(initial: .addWord, then: buttonInfoStream)
     buttonBackgroundColor = .init(buttonInfo.map { $0 == .addWord ? .blue : .green })
     wordList.signal.filter { $0.count >= 1 }.sample(on: _save.signal).observeValues {
       let history = History(date: Date(), list: $0)
@@ -41,8 +45,10 @@ class WordListViewModel {
 
   func save() { _save.value = () }
   func add(word: Word) { _wordList.value.append(word) }
-  func viewDidLoad() { _viewDidLoad .value = ()}
-  func addInitial(wordList: [Word]) { _wordList.value = wordList }
+  func viewDidLoad() { _viewDidLoad.value = ()}
+  func addInitial(wordList: [Word]) {
+    _wordList.value = wordList
+  }
 }
 
 enum ButtonState: Int {

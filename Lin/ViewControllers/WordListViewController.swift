@@ -16,7 +16,6 @@ class WordListViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.tableFooterView = .init(frame: .zero)
-    viewModel.viewDidLoad()
     viewModel.wordList.signal.observeValues { [weak self] _ in self?.tableView.reloadData() }
     viewModel.navTitle.signal.observeValues { [weak self] in self?.navigationItem.title = $0 }
     viewModel.buttonInfo.signal.observeValues { [weak self] in
@@ -26,14 +25,11 @@ class WordListViewController: UITableViewController {
     viewModel.buttonBackgroundColor.signal.observeValues { [weak self] in
       self?.mainButton.backgroundColor = $0
     }
+    viewModel.viewDidLoad()
 
-    guard navigationController?.presentingViewController != nil else {
-      tableView.tableHeaderView = nil
-      navigationItem.title = "\(viewModel.wordList.value.count)个单词"
-      return
-    }
+    if viewModel.wordList.value.count >= 10 { return }
     navigationItem.rightBarButtonItem = .init(
-      title: "Close",
+      title: "Done",
       style: .done,
       target: self,
       action: #selector(closePressed)
@@ -53,6 +49,7 @@ class WordListViewController: UITableViewController {
         if $0.title == AlertButtonType.cancel.description { return }
         if $0.title == "保存" { self.viewModel.save() }
         self.navigationController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
   }
 

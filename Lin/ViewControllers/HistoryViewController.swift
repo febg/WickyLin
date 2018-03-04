@@ -25,6 +25,10 @@ class HistoryViewController: UITableViewController {
       self?.tableView.reloadData()
       self?.refreshControl?.endRefreshing()
     }
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     loadData()
   }
 
