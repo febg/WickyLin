@@ -17,6 +17,7 @@ class WordListViewModel {
 
   private let _wordList = MutableProperty([Word]())
   private let _viewDidLoad  = MutableProperty(())
+  private let _save = MutableProperty(())
 
   init() {
     wordList = .init(capturing: _wordList)
@@ -31,10 +32,17 @@ class WordListViewModel {
     navTitle = .init(initial: placeholder, then: navTitleStream)
     buttonInfo = .init(wordList.map { $0.count >= nums ? .startQuiz : .addWord })
     buttonBackgroundColor = .init(buttonInfo.map { $0 == .addWord ? .blue : .green })
+    wordList.signal.filter { $0.count >= 1 }.sample(on: _save.signal).observeValues {
+      let history = History(date: Date(), list: $0)
+      Storage.store(history, to: .documents, as: Date().dateString)
+      print("saved")
+    }
   }
 
+  func save() { _save.value = () }
   func add(word: Word) { _wordList.value.append(word) }
   func viewDidLoad() { _viewDidLoad .value = ()}
+  func addInitial(wordList: [Word]) { _wordList.value = wordList }
 }
 
 enum ButtonState: Int {

@@ -8,6 +8,7 @@
 
 import Foundation
 import Foundation
+import ReactiveSwift
 
 public class Storage {
 
@@ -122,5 +123,13 @@ public class Storage {
   static func fileExists(_ fileName: String, in directory: Directory) -> Bool {
     let url = getURL(for: directory).appendingPathComponent(fileName, isDirectory: false)
     return FileManager.default.fileExists(atPath: url.path)
+  }
+
+  static func allFileNames() -> [String] {
+    var results = [String]()
+    if let names = try? FileManager.default.contentsOfDirectory(atPath: getURL(for: .documents).path) {
+      results = names
+    }
+    return results
   }
 }

@@ -7,15 +7,28 @@
 //
 
 import UIKit
+import Snakepit
 
 class HistoryViewController: UITableViewController {
+
+  let viewModel = HistoryViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.dataSource = self
     let footSize = CGSize(width: view.frame.width, height: 44)
     tableView.tableFooterView = UIView(frame: .init(origin: .zero, size: footSize))
+    let control = UIRefreshControl()
+    control.addTarget(self, action: #selector(loadData), for: .valueChanged)
+    refreshControl = control
+    viewModel.history.signal.observeValues { [weak self] _ in
+      self?.tableView.reloadData()
+      self?.refreshControl?.endRefreshing()
+    }
+    loadData()
   }
+
+  @objc func loadData() { viewModel.loadData() }
   @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
     let nav = UINavigationController(rootViewController: Storyboard.Main.get(WordListViewController.self))
     present(nav, animated: true, completion: nil)
@@ -25,11 +38,20 @@ class HistoryViewController: UITableViewController {
 extension HistoryViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath)
-    cell.textLabel?.text = "hahaha" + Date.init(timeIntervalSince1970: 100000000).dateString
+    let history = viewModel.history.value[indexPath.row]
+    cell.textLabel?.text = history.date.dateString
+    cell.detailTextLabel?.text = "\(history.list.count)个单词"
     return cell
   }
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 40
+    return viewModel.history.value.count
+  }
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let history = viewModel.history.value[indexPath.row]
+    let wordListVc = Storyboard.Main.get(WordListViewController.self)
+    wordListVc.viewModel.addInitial(wordList: history.list)
+    navigationController?.pushViewController(wordListVc, animated: true)
   }
 }

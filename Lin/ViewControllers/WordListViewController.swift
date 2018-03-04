@@ -27,6 +27,11 @@ class WordListViewController: UITableViewController {
       self?.mainButton.backgroundColor = $0
     }
 
+    guard navigationController?.presentingViewController != nil else {
+      tableView.tableHeaderView = nil
+      navigationItem.title = "\(viewModel.wordList.value.count)个单词"
+      return
+    }
     navigationItem.rightBarButtonItem = .init(
       title: "Close",
       style: .done,
@@ -36,15 +41,18 @@ class WordListViewController: UITableViewController {
   }
 
   @objc func closePressed() {
+    guard !self.viewModel.wordList.value.isEmpty else {
+      self.navigationController?.dismiss(animated: true, completion: nil)
+      return
+    }
     showAlert(
       title: "是否保存",
       message: "如果你不保存，这些单词就没有了",
-      actions: [.cancel, .ok],
+      actions: [.cancel, .custom("保存", .default), .custom("删除", .destructive)],
       type: .actionSheet) {
-        if $0.title == AlertButtonType.ok.description {
-          self.navigationController?.dismiss(animated: true, completion: nil)
-          // TODO: save wordlist
-        }
+        if $0.title == AlertButtonType.cancel.description { return }
+        if $0.title == "保存" { self.viewModel.save() }
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
   }
 
@@ -69,8 +77,8 @@ extension WordListViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
     let word = viewModel.wordList.value[indexPath.row]
-    cell.textLabel?.text = word.title
-    cell.detailTextLabel?.text = word.subtitle + Date().dateString
+    cell.textLabel?.text = "英文单词：" + word.title
+    cell.detailTextLabel?.text = "中文意思：" + word.subtitle
     return cell
   }
 }
