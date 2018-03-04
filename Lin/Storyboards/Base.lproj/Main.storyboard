@@ -225,5 +225,72 @@
             </objects>
             <point key="canvasLocation" x="-1764" y="124.58770614692655"/>
         </scene>
+        <!--Quiz View Controller-->
+        <scene sceneID="LOq-Qt-PA0">
+            <objects>
+                <viewController storyboardIdentifier="QuizViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q8l-nC-ARo" customClass="QuizViewController" customModule="Lin" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="96t-0n-IoE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WordWordWordWordWordWordWord" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zip-qv-Hv2">
+                                <rect key="frame" x="16" y="40" width="343" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="UuV-cU-WaH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAM-uc-fc7">
+                                <rect key="frame" x="10" y="204" width="355" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="lsx-GD-aoQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="确定">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="q8l-nC-ARo" eventType="touchUpInside" id="DLT-J1-lhk"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="填写对应的英文单词" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9cn-c0-mn0">
+                                <rect key="frame" x="10" y="120" width="355" height="40"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LAM-uc-fc7" firstAttribute="leading" secondItem="9cn-c0-mn0" secondAttribute="leading" id="0SV-Wo-KxE"/>
+                            <constraint firstItem="L5K-n1-T8j" firstAttribute="trailing" secondItem="9cn-c0-mn0" secondAttribute="trailing" constant="10" id="12p-tR-rHF"/>
+                            <constraint firstItem="Zip-qv-Hv2" firstAttribute="top" secondItem="L5K-n1-T8j" secondAttribute="top" constant="20" id="AXg-eN-DX6"/>
+                            <constraint firstItem="9cn-c0-mn0" firstAttribute="top" secondItem="Zip-qv-Hv2" secondAttribute="bottom" constant="20" id="DHc-l4-zmp"/>
+                            <constraint firstItem="L5K-n1-T8j" firstAttribute="trailing" secondItem="Zip-qv-Hv2" secondAttribute="trailing" constant="16" id="Dvx-dm-DW3"/>
+                            <constraint firstItem="Zip-qv-Hv2" firstAttribute="leading" secondItem="L5K-n1-T8j" secondAttribute="leading" constant="16" id="N3o-TT-zM9"/>
+                            <constraint firstItem="LAM-uc-fc7" firstAttribute="trailing" secondItem="9cn-c0-mn0" secondAttribute="trailing" id="VmY-Ln-gtq"/>
+                            <constraint firstItem="9cn-c0-mn0" firstAttribute="leading" secondItem="L5K-n1-T8j" secondAttribute="leading" constant="10" id="pHt-9M-6rm"/>
+                            <constraint firstItem="LAM-uc-fc7" firstAttribute="top" secondItem="9cn-c0-mn0" secondAttribute="bottom" constant="44" id="q5h-II-FoP"/>
+                            <constraint firstItem="LAM-uc-fc7" firstAttribute="centerX" secondItem="9cn-c0-mn0" secondAttribute="centerX" id="ySX-5o-5C6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="L5K-n1-T8j"/>
+                    </view>
+                    <connections>
+                        <outlet property="questionLabel" destination="Zip-qv-Hv2" id="eXz-mT-LZn"/>
+                        <outlet property="textField" destination="9cn-c0-mn0" id="vWl-v3-boV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lKz-WP-zs5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1764" y="912"/>
+        </scene>
     </scenes>
 </document>

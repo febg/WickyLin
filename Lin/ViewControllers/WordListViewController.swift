@@ -60,7 +60,9 @@ class WordListViewController: UITableViewController {
       addWordVc.viewModel = AddWordViewModel(viewModel)
       navigationController?.pushViewController(addWordVc, animated: true)
     default:
-      // TODO: Start QUIZ
+      let quizVc = Storyboard.Main.get(QuizViewController.self)
+      quizVc.viewModel = QuizViewModel.init(viewModel.wordList.value)
+      navigationController?.pushViewController(quizVc, animated: true)
       return
     }
   }

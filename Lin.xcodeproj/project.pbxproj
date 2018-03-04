@@ -23,6 +23,7 @@
 		A0CF7FAE204B4B80002FD348 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FAD204B4B80002FD348 /* Storage.swift */; };
 		A0CF7FB0204B4C22002FD348 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FAF204B4C22002FD348 /* Date.swift */; };
 		A0CF7FB2204B6224002FD348 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FB1204B6224002FD348 /* HistoryViewModel.swift */; };
+		A0CF7FB8204B90F8002FD348 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FB7204B90F8002FD348 /* QuizViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A0CF7FAD204B4B80002FD348 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		A0CF7FAF204B4C22002FD348 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A0CF7FB1204B6224002FD348 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		A0CF7FB7204B90F8002FD348 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				A014B6C1204AB7930053346A /* HistoryViewController.swift */,
 				A0A5B704204A869200BFCB68 /* AddWordViewController.swift */,
 				A014B6BD204A91DE0053346A /* WordListViewController.swift */,
+				A0CF7FB7204B90F8002FD348 /* QuizViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				A014B6C0204A921C0053346A /* WordListViewModel.swift in Sources */,
 				A0A5B703204A85E400BFCB68 /* Word.swift in Sources */,
 				A0CF7FB2204B6224002FD348 /* HistoryViewModel.swift in Sources */,
+				A0CF7FB8204B90F8002FD348 /* QuizViewController.swift in Sources */,
 				A0A5B707204A8E4B00BFCB68 /* AddWordViewModel.swift in Sources */,
 				A0CF7FB0204B4C22002FD348 /* Date.swift in Sources */,
 				A014B6C2204AB7930053346A /* HistoryViewController.swift in Sources */,
@@ -460,6 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5Z63N39FV7;
 				INFOPLIST_FILE = Lin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.x52.ios.Lin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -476,6 +481,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5Z63N39FV7;
 				INFOPLIST_FILE = Lin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.x52.ios.Lin;
 				PRODUCT_NAME = "$(TARGET_NAME)";

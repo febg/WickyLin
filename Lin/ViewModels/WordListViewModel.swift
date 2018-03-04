@@ -23,8 +23,6 @@ class WordListViewModel {
     wordList = .init(capturing: _wordList)
     let nums = 10
     let navTitleStream = Signal.merge(
-//      _viewDidLoad .signal.map { placeholder },
-//      wordList.signal.filter { $0.isEmpty }.map { _ in placeholder },
       wordList.signal.filter { $0.count < nums }.map { "你还需要添加\(nums - $0.count)个单词" },
       wordList.signal.filter { $0.count >= nums }.map { "一共\($0.count)个单词" }
     )

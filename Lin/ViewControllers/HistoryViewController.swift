@@ -32,7 +32,10 @@ class HistoryViewController: UITableViewController {
     loadData()
   }
 
-  @objc func loadData() { viewModel.loadData() }
+  @objc func loadData() {
+    viewModel.loadData()
+    navigationItem.title = "\(viewModel.history.value.count)条记录"
+  }
   @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
     let nav = UINavigationController(rootViewController: Storyboard.Main.get(WordListViewController.self))
     present(nav, animated: true, completion: nil)
