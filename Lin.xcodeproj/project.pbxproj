@@ -15,6 +15,7 @@
 		A0857241204A782A00776E6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A085723F204A782A00776E6D /* Main.storyboard */; };
 		A0857243204A782A00776E6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0857242204A782A00776E6D /* Assets.xcassets */; };
 		A0857246204A782A00776E6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0857244204A782A00776E6D /* LaunchScreen.storyboard */; };
+		A08B5E06204E6ECC00E13E0B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08B5E05204E6ECC00E13E0B /* UIColor.swift */; };
 		A0A5B6FE204A7CE100BFCB68 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5B6FD204A7CE100BFCB68 /* Storyboard.swift */; };
 		A0A5B703204A85E400BFCB68 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5B702204A85E400BFCB68 /* Word.swift */; };
 		A0A5B705204A869200BFCB68 /* AddWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5B704204A869200BFCB68 /* AddWordViewController.swift */; };
@@ -39,6 +40,7 @@
 		A0857242204A782A00776E6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0857245204A782A00776E6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0857247204A782A00776E6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A08B5E05204E6ECC00E13E0B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A0A5B6FD204A7CE100BFCB68 /* Storyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
 		A0A5B702204A85E400BFCB68 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		A0A5B704204A869200BFCB68 /* AddWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				A0A5B6FD204A7CE100BFCB68 /* Storyboard.swift */,
 				A0CF7FAF204B4C22002FD348 /* Date.swift */,
+				A08B5E05204E6ECC00E13E0B /* UIColor.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0CF7FAC204B4ACC002FD348 /* History.swift in Sources */,
+				A08B5E06204E6ECC00E13E0B /* UIColor.swift in Sources */,
 				A085723A204A782A00776E6D /* AppDelegate.swift in Sources */,
 				A0A5B6FE204A7CE100BFCB68 /* Storyboard.swift in Sources */,
 				A014B6BE204A91DE0053346A /* WordListViewController.swift in Sources */,
@@ -462,7 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Z63N39FV7;
+				DEVELOPMENT_TEAM = 46GF7TV564;
 				INFOPLIST_FILE = Lin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -479,7 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5Z63N39FV7;
+				DEVELOPMENT_TEAM = 46GF7TV564;
 				INFOPLIST_FILE = Lin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

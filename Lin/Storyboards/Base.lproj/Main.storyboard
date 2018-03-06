@@ -279,11 +279,11 @@
                             <constraint firstItem="LAM-uc-fc7" firstAttribute="trailing" secondItem="9cn-c0-mn0" secondAttribute="trailing" id="VmY-Ln-gtq"/>
                             <constraint firstItem="9cn-c0-mn0" firstAttribute="leading" secondItem="L5K-n1-T8j" secondAttribute="leading" constant="10" id="pHt-9M-6rm"/>
                             <constraint firstItem="LAM-uc-fc7" firstAttribute="top" secondItem="9cn-c0-mn0" secondAttribute="bottom" constant="44" id="q5h-II-FoP"/>
-                            <constraint firstItem="LAM-uc-fc7" firstAttribute="centerX" secondItem="9cn-c0-mn0" secondAttribute="centerX" id="ySX-5o-5C6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="L5K-n1-T8j"/>
                     </view>
                     <connections>
+                        <outlet property="button" destination="LAM-uc-fc7" id="NAP-7N-yfb"/>
                         <outlet property="questionLabel" destination="Zip-qv-Hv2" id="eXz-mT-LZn"/>
                         <outlet property="textField" destination="9cn-c0-mn0" id="vWl-v3-boV"/>
                     </connections>

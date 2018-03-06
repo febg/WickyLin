@@ -11,9 +11,14 @@ import Foundation
 struct Word: Codable {
   let title: String
   let subtitle: String
+  var passed: Bool?
 
   init(_ formData: (String, String)) {
     title = formData.0
     subtitle = formData.1
+  }
+
+  mutating func markPassed() {
+    passed = true
   }
 }

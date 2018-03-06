@@ -33,7 +33,7 @@ class WordListViewModel {
       .combineLatest(with: _viewDidLoad.signal)
       .map { $0.0 }
     buttonInfo = .init(initial: .addWord, then: buttonInfoStream)
-    buttonBackgroundColor = .init(buttonInfo.map { $0 == .addWord ? .blue : .green })
+    buttonBackgroundColor = .init(buttonInfo.map { $0 == .addWord ? .lightBlue : .green })
     wordList.signal.filter { $0.count >= 1 }.sample(on: _save.signal).observeValues {
       let history = History(date: Date(), list: $0)
       Storage.store(history, to: .documents, as: Date().dateString)
