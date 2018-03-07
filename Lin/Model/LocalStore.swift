@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 import ReactiveSwift
 
-public class Storage {
+public class LocalStore {
 
   fileprivate init() { }
 

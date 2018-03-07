@@ -22,7 +22,7 @@
 		A0A5B705204A869200BFCB68 /* AddWordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5B704204A869200BFCB68 /* AddWordViewController.swift */; };
 		A0A5B707204A8E4B00BFCB68 /* AddWordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A5B706204A8E4B00BFCB68 /* AddWordViewModel.swift */; };
 		A0CF7FAC204B4ACC002FD348 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FAB204B4ACC002FD348 /* History.swift */; };
-		A0CF7FAE204B4B80002FD348 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FAD204B4B80002FD348 /* Storage.swift */; };
+		A0CF7FAE204B4B80002FD348 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FAD204B4B80002FD348 /* LocalStore.swift */; };
 		A0CF7FB0204B4C22002FD348 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FAF204B4C22002FD348 /* Date.swift */; };
 		A0CF7FB2204B6224002FD348 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FB1204B6224002FD348 /* HistoryViewModel.swift */; };
 		A0CF7FB8204B90F8002FD348 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CF7FB7204B90F8002FD348 /* QuizViewController.swift */; };
@@ -49,7 +49,7 @@
 		A0A5B704204A869200BFCB68 /* AddWordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordViewController.swift; sourceTree = "<group>"; };
 		A0A5B706204A8E4B00BFCB68 /* AddWordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWordViewModel.swift; sourceTree = "<group>"; };
 		A0CF7FAB204B4ACC002FD348 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
-		A0CF7FAD204B4B80002FD348 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		A0CF7FAD204B4B80002FD348 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 		A0CF7FAF204B4C22002FD348 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A0CF7FB1204B6224002FD348 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		A0CF7FB7204B90F8002FD348 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 			children = (
 				A0A5B702204A85E400BFCB68 /* Word.swift */,
 				A0CF7FAB204B4ACC002FD348 /* History.swift */,
-				A0CF7FAD204B4B80002FD348 /* Storage.swift */,
+				A0CF7FAD204B4B80002FD348 /* LocalStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 				A0A5B707204A8E4B00BFCB68 /* AddWordViewModel.swift in Sources */,
 				A0CF7FB0204B4C22002FD348 /* Date.swift in Sources */,
 				A014B6C2204AB7930053346A /* HistoryViewController.swift in Sources */,
-				A0CF7FAE204B4B80002FD348 /* Storage.swift in Sources */,
+				A0CF7FAE204B4B80002FD348 /* LocalStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

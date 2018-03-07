@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveSwift
+import Firebase
 
 class WordListViewModel {
   public let wordList: Property<[Word]>
@@ -36,8 +37,8 @@ class WordListViewModel {
     buttonBackgroundColor = .init(buttonInfo.map { $0 == .addWord ? .lightBlue : .green })
     wordList.signal.filter { $0.count >= 1 }.sample(on: _save.signal).observeValues {
       let history = History(date: Date(), list: $0)
-      Storage.store(history, to: .documents, as: Date().dateString)
-      print("saved")
+      LocalStore.store(history, to: .documents, as: Date().dateString)
+      print("saved locally")
     }
   }
 

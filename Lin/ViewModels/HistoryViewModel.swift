@@ -20,7 +20,7 @@ class HistoryViewModel {
   init() {
     history = .init(capturing: _history)
     isLoading = .init(capturing: _isLoading)
-    _getHistory = Storage.getHistory()
+    _getHistory = LocalStore.getHistory()
   }
   func loadData() {
     _getHistory.on(
@@ -32,7 +32,7 @@ class HistoryViewModel {
   }
 }
 
-extension Storage {
+extension LocalStore {
   static func getHistory() -> SignalProducer<[History], NoError> {
     return .init { sink, lifetime in
       var results = [History]()
