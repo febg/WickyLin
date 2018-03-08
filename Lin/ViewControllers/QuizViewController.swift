@@ -24,7 +24,7 @@ class QuizViewController: UIViewController {
     }
     viewModel.testPassed.skipNil().observeValues { [weak self] in
       self?.showAlert(title: "考试通过，再接再厉") { _ in
-        Analytics.logEvent("Test Passed", parameters: ["date": Date()])
+        Analytics.logEvent("TestPassed", parameters: ["date": Date().description])
         self?.navigationController?.popViewController(animated: true)
       }
     }

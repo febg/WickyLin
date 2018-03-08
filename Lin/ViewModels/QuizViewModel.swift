@@ -20,11 +20,13 @@ class QuizViewModel {
   private let _viewDidLoad = MutableProperty(())
   private let _buttonPressed = MutableProperty(())
   private let _answer = MutableProperty<String?>(nil)
+  private let _backupList = MutableProperty([Word]())
 
   init() {
+
     currentQuestion = _wordList.signal
       .combineLatest(with: _viewDidLoad.signal)
-      .map { $0.0.next?.subtitle }
+      .map { $0.0.first?.subtitle }
     testPassed = currentQuestion
       .map { $0 == nil ? () : nil }
 
@@ -43,19 +45,29 @@ class QuizViewModel {
     checkAnswerOnButtonPress.skipNil().observeValues {
       for (index, w) in self._wordList.value.enumerated() {
         guard w == $0 else {
-          Analytics.logEvent("Submited Answer", parameters: ["word": $0, "result": false])
+          Analytics.logEvent(
+            "SubmitedAnswer",
+            parameters: ["english": $0.title, "chinese": $0.subtitle, "result": false]
+          )
           continue
         }
-        Analytics.logEvent("Submited Answer", parameters: ["word": $0, "result": true])
+        Analytics.logEvent(
+          "SubmitedAnswer",
+          parameters: ["english": $0.title, "chinese": $0.subtitle, "result": true])
         self._wordList.value.remove(at: index)
+        self._backupList.value.append(w)
         return
       }
+    }
+
+    testPassed.skipNil().observeValues { [weak self] in
+      self?._backupList.value.upload()
     }
   }
 
   func viewDidLoad() {
     _viewDidLoad.value = ()
-    Analytics.logEvent("Started A New Quiz", parameters: ["date": Date()])
+    Analytics.logEvent("StartedANewQuiz", parameters: ["date": Date().description])
   }
   func submit(answer: String?) { _answer.value = answer }
   func buttonPressed() { _buttonPressed.value = () }
@@ -72,16 +84,23 @@ extension Array where Element == Word {
     return nil
   }
 
-  var next: Word? {
-    for word in self {
-      guard let p = word.passed, p == false else { return word }
+  func upload() {
+    let ref = Database.database().reference().child(String(describing: Word.self))
+    for w in self {
+      ref.childByAutoId().setValue(w.dictionaryValue)
     }
-    return nil
   }
 }
 
 extension Word: Equatable {
   static func == (lhs: Word, rhs: Word) -> Bool {
     return lhs.title == rhs.title && lhs.subtitle == rhs.subtitle
+  }
+
+  var dictionaryValue: [String: String] {
+    return [
+      "english": title,
+      "chinese": subtitle
+    ]
   }
 }

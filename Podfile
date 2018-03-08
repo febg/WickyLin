@@ -8,4 +8,5 @@ target 'Lin' do
   pod 'SwiftLint'
   pod 'ReactiveCocoa', '~> 7.0'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 end

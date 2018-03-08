@@ -18,3 +18,5 @@ Pods/
 Lin.xcodeproj/xcuserdata/yingmu52.xcuserdatad/xcschemes/xcschememanagement.plist
 
 Lin/GoogleService-Info.plist
+
+cloud/node_modules/
