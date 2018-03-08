@@ -10,6 +10,7 @@ import Foundation
 import ReactiveSwift
 import Result
 import Firebase
+import Alamofire
 
 class QuizViewModel {
   public let currentQuestion: Signal<String?, NoError>
@@ -88,6 +89,15 @@ extension Array where Element == Word {
     let ref = Database.database().reference().child(String(describing: Word.self))
     for w in self {
       ref.childByAutoId().setValue(w.dictionaryValue)
+    }
+    // Slack Me
+    guard let hook = ProcessInfo.processInfo.environment["slack-webhook"] else { return }
+    let payload = ["text": "伟琳刚刚背完了今天的单词"]
+    Alamofire
+      .request(hook, method: .post, parameters: payload,
+               encoding: JSONEncoding.default, headers: nil)
+      .responseString { rep in
+        print(rep.description)
     }
   }
 }

@@ -9,4 +9,5 @@ target 'Lin' do
   pod 'ReactiveCocoa', '~> 7.0'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Alamofire', '~> 4.7'
 end
