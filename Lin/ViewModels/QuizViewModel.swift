@@ -16,12 +16,14 @@ class QuizViewModel {
   public let currentQuestion: Signal<String?, NoError>
   public let testPassed: Signal<Void?, NoError>
   public let buttonState: Signal<(String, UIColor), NoError>
+  public let cheatting: Signal<Bool, NoError>
 
   private let _wordList = MutableProperty([Word]())
   private let _viewDidLoad = MutableProperty(())
   private let _buttonPressed = MutableProperty(())
   private let _answer = MutableProperty<String?>(nil)
   private let _backupList = MutableProperty([Word]())
+  private let _popViewController = MutableProperty(())
 
   init() {
 
@@ -30,6 +32,9 @@ class QuizViewModel {
       .map { $0.0.first?.subtitle }
     testPassed = currentQuestion
       .map { $0 == nil ? () : nil }
+
+    let testNotPassed = testPassed.map { $0 == nil }
+    cheatting = testNotPassed.and(_popViewController.signal.map { true })
 
     let checkAnswer = Signal.combineLatest(
       _wordList.signal,
@@ -64,6 +69,11 @@ class QuizViewModel {
     testPassed.skipNil().observeValues { [weak self] in
       self?._backupList.value.upload()
     }
+    cheatting.observeValues {
+      guard $0 == true else { return }
+      sendSlackMessage("发现伟琳考试作弊")
+    }
+
   }
 
   func viewDidLoad() {
@@ -73,6 +83,7 @@ class QuizViewModel {
   func submit(answer: String?) { _answer.value = answer }
   func buttonPressed() { _buttonPressed.value = () }
   func startQuiz(for wordList: [Word]) { _wordList.value = wordList }
+  func viewWillDisappear() { _popViewController.value = () }
 }
 
 extension Array where Element == Word {
@@ -90,15 +101,7 @@ extension Array where Element == Word {
     for w in self {
       ref.childByAutoId().setValue(w.dictionaryValue)
     }
-    // Slack Me
-    guard let hook = ProcessInfo.processInfo.environment["slack-webhook"] else { return }
-    let payload = ["text": "伟琳刚刚背完了今天的单词"]
-    Alamofire
-      .request(hook, method: .post, parameters: payload,
-               encoding: JSONEncoding.default, headers: nil)
-      .responseString { rep in
-        print(rep.description)
-    }
+    sendSlackMessage("伟琳刚刚背完了今天的单词")
   }
 }
 
@@ -112,5 +115,14 @@ extension Word: Equatable {
       "english": title,
       "chinese": subtitle
     ]
+  }
+}
+
+func sendSlackMessage(_ msg: String) {
+  guard let hook = ProcessInfo.processInfo.environment["slack-webhook"] else { return }
+  let payload = ["text": msg]
+  Alamofire.request(hook, method: .post, parameters: payload,encoding: JSONEncoding.default, headers: nil)
+    .responseString { rep in
+      print(rep.description)
   }
 }

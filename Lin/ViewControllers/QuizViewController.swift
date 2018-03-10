@@ -9,6 +9,7 @@
 import UIKit
 import ReactiveCocoa
 import Firebase
+import Snakepit
 
 class QuizViewController: UIViewController {
   @IBOutlet private weak var questionLabel: UILabel!
@@ -19,6 +20,8 @@ class QuizViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     textField.becomeFirstResponder()
+    navigationItem.leftBarButtonItem =
+      UIBarButtonItem(title: "放弃考试", style: .done, target: self, action: #selector(tapOnBackButton))
     textField.reactive.continuousTextValues.observeValues { [weak self] in
       self?.viewModel.submit(answer: $0)
     }
@@ -36,10 +39,29 @@ class QuizViewController: UIViewController {
       self?.button.setTitle($0.0, for: .normal)
       self?.button.backgroundColor = $0.1
     }
+    viewModel.cheatting.observeValues { [weak self] in
+      guard $0 == true else { return }
+      self?.showAlert(title: "发现考试作弊!!")
+    }
     viewModel.viewDidLoad()
   }
 
   @IBAction func buttonPressed(_ sender: UIButton) {
     viewModel.buttonPressed()
+  }
+
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    viewModel.viewWillDisappear()
+  }
+
+  @objc func tapOnBackButton() {
+    showAlert(
+      title: "注意",
+      message: "放弃未完成的考试将被视为作弊行为",
+      actions: [.ok, .cancel], type: .actionSheet) { [weak self] in
+        guard $0.title == AlertButtonType.ok.description else { return }
+        self?.navigationController?.popViewController(animated: true)
+    }
   }
 }
