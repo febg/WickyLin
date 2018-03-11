@@ -89,8 +89,10 @@ class QuizViewModel {
 extension Array where Element == Word {
   func check(answer: String, for question: String) -> Word? {
     for word in self {
-      guard word.subtitle == question,
-        word.title.lowercased() == answer.lowercased() else { continue }
+      guard
+        word.subtitle == question,
+        word.title.lowercased().trimmingCharacters(in: .whitespaces) == answer.lowercased().trimmingCharacters(in: .whitespaces)
+        else { continue }
       return word
     }
     return nil
@@ -121,7 +123,7 @@ extension Word: Equatable {
 func sendSlackMessage(_ msg: String) {
   guard let hook = ProcessInfo.processInfo.environment["slack-webhook"] else { return }
   let payload = ["text": msg]
-  Alamofire.request(hook, method: .post, parameters: payload,encoding: JSONEncoding.default, headers: nil)
+  Alamofire.request(hook, method: .post, parameters: payload, encoding: JSONEncoding.default, headers: nil)
     .responseString { rep in
       print(rep.description)
   }
